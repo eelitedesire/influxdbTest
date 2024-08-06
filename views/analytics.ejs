@@ -1,0 +1,49 @@
+<!-- views/analytics.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analytics</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Load</th>
+            <th>Solar PV</th>
+            <th>Battery Charged</th>
+            <th>Battery Discharged</th>
+            <th>Grid Used</th>
+            <th>Grid Exported</th>
+        </tr>
+        <% data.loadPowerData.forEach((entry, index) => { %>
+            <tr>
+                <td><%= entry.time %></td>
+                <td><%= entry.value %></td>
+                <td><%= data.pvPowerData[index].value %></td>
+                <td><%= data.batteryStateOfChargeData[index].value %></td>
+                <td><%= data.batteryPowerData[index].value %></td>
+                <td><%= data.gridPowerData[index].value %></td>
+                <td><%= data.gridVoltageData[index].value %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
